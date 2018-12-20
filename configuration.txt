@@ -1,0 +1,85 @@
+POUR ROUTEUR:
+
+enable
+configure terminal
+line console 0
+password xaxa
+login
+exit
+enable password xaxa
+exit
+config t
+service password-encryption
+interface GigabitEthernet0/0
+ip address 1.1.1.1 255.0.0.0
+exit
+config t
+interface FastEthernet1/0
+ip address 10.0.0.254 255.0.0.0
+exit
+exit
+config t
+interface FastEthernet2/0
+ip address 192.168.1.254 255.255.254.0
+ip helper-address 10.0.0.2
+exit
+config t
+interface FastEthernet4/0
+ip address 192.168.2.14 255.255.255.240
+ip helper-address 10.0.0.2
+exit
+config t
+interface FastEthernet6/0
+ip address 192.168.2.22 255.255.255.248
+ip helper-address 10.0.0.2
+exit
+config t
+interface FastEthernet7/0
+ip address 192.168.103.254 255.255.252.0
+ip helper-address 10.0.0.2
+exit
+config t
+interface FastEthernet8/0
+ip address 192.168.104.62 255.255.255.192
+ip helper-address 10.0.0.2
+exit
+exit
+exit
+
+
+
+
+
+
+
+POUR SWITCH:
+
+IP du switch à changer selon le numéro du siwtch a configurer exemple 192.168.(jeux/public).(n°switch)
+
+
+enable
+configure terminal
+line vty 0 15
+password xaxa
+login
+exit
+line console 0
+password xaxa
+login
+exit
+enable secret xaxa
+service password-encryption
+interface vlan 1
+ip address 192.168.1.248 255.255.254.0
+no shutdown
+exit
+write
+copy running-config s
+
+exit
+exit
+exit
+
+
+
+
